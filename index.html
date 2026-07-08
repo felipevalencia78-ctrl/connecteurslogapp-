@@ -1,0 +1,82 @@
+﻿<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Aplicacion educativa para practicar los connecteurs logiques en frances."
+    />
+    <title>Les Connecteurs Logiques</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="practice-panel" aria-labelledby="appTitle">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Frances B1</p>
+            <h1 id="appTitle">Les connecteurs logiques</h1>
+          </div>
+          <div class="score-card" aria-live="polite">
+            <span id="scoreValue">0/8</span>
+            <span>aciertos</span>
+          </div>
+        </header>
+
+        <section class="word-bank" aria-labelledby="wordBankTitle">
+          <div class="section-heading">
+            <h2 id="wordBankTitle">Completez avec</h2>
+            <button id="hintButton" class="icon-button" type="button" aria-label="Ver una pista" title="Ver una pista">
+              ?
+            </button>
+          </div>
+          <div id="wordBank" class="chips" aria-label="Banco de conectores"></div>
+        </section>
+
+        <section class="exercise-area" aria-label="Ejercicio">
+          <ol id="sentences" class="sentences"></ol>
+        </section>
+
+        <section class="feedback-strip" aria-live="polite">
+          <div>
+            <strong id="feedbackTitle">Elige un conector.</strong>
+            <p id="feedbackText">Selecciona una palabra del banco y luego toca un espacio en blanco.</p>
+          </div>
+          <div class="progress-track" aria-label="Progreso">
+            <span id="progressBar"></span>
+          </div>
+        </section>
+
+        <footer class="actions">
+          <button id="resetButton" class="ghost-button" type="button">Reiniciar</button>
+          <button id="checkButton" class="primary-button" type="button">Comprobar</button>
+        </footer>
+      </section>
+
+      <aside class="side-panel" aria-label="Apoyo visual">
+        <div class="connector-map" aria-hidden="true">
+          <span class="node node-a">cause</span>
+          <span class="node node-b">opposition</span>
+          <span class="node node-c">consequence</span>
+          <span class="node node-d">ordre</span>
+          <svg viewBox="0 0 260 220" role="img" aria-label="Mapa de relaciones logicas">
+            <path d="M60 64 C110 18, 160 18, 204 68" />
+            <path d="M70 154 C112 204, 166 204, 204 154" />
+            <path d="M54 80 C30 116, 32 144, 64 166" />
+            <path d="M206 82 C232 114, 228 146, 198 166" />
+          </svg>
+        </div>
+        <div class="mini-guide">
+          <h2>Repere rapide</h2>
+          <p><strong>Parce que</strong> introduit une cause.</p>
+          <p><strong>Donc</strong> et <strong>c'est pourquoi</strong> annoncent une consequence.</p>
+          <p><strong>Cependant</strong> et <strong>en revanche</strong> marquent une opposition.</p>
+          <p><strong>D'abord</strong>, <strong>ensuite</strong>, <strong>enfin</strong> organisent les idees.</p>
+        </div>
+      </aside>
+    </main>
+
+    <script src="game.js"></script>
+  </body>
+</html>
