@@ -36,21 +36,12 @@ button {
 }
 
 .app-shell {
-  width: min(1180px, 100%);
+  width: min(980px, 100%);
   min-height: calc(100vh - 56px);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 320px;
-  gap: 18px;
+  grid-template-columns: minmax(0, 1fr);
   align-items: stretch;
-}
-
-.practice-panel,
-.side-panel {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--paper);
-  box-shadow: 0 18px 38px rgba(36, 49, 59, 0.12);
 }
 
 .practice-panel {
@@ -58,6 +49,10 @@ button {
   grid-template-rows: auto auto 1fr auto auto;
   min-width: 0;
   overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  box-shadow: 0 18px 38px rgba(36, 49, 59, 0.12);
 }
 
 .topbar {
@@ -125,8 +120,7 @@ h1 {
   margin-bottom: 12px;
 }
 
-.section-heading h2,
-.mini-guide h2 {
+.section-heading h2 {
   font-size: 1rem;
   text-transform: uppercase;
   color: var(--muted);
@@ -320,104 +314,20 @@ h1 {
   font-size: 1rem;
 }
 
-.side-panel {
-  display: grid;
-  grid-template-rows: 250px 1fr;
-  overflow: hidden;
-}
-
-.connector-map {
-  position: relative;
-  background:
-    linear-gradient(145deg, rgba(49, 95, 159, 0.18), transparent 55%),
-    #24313b;
-}
-
-.connector-map svg {
-  position: absolute;
-  inset: 18px 28px 16px;
-  width: calc(100% - 56px);
-  height: calc(100% - 34px);
-  fill: none;
-  stroke: rgba(255, 253, 247, 0.62);
-  stroke-width: 5;
-  stroke-linecap: round;
-}
-
-.node {
-  position: absolute;
-  z-index: 1;
-  display: grid;
-  place-items: center;
-  min-width: 106px;
-  min-height: 42px;
-  padding: 0 12px;
-  border-radius: 8px;
-  color: #24313b;
-  font-weight: 900;
-  background: #fffdf7;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.22);
-}
-
-.node-a {
-  left: 30px;
-  top: 38px;
-  border-bottom: 5px solid var(--gold);
-}
-
-.node-b {
-  right: 28px;
-  top: 42px;
-  border-bottom: 5px solid var(--coral);
-}
-
-.node-c {
-  left: 28px;
-  bottom: 42px;
-  border-bottom: 5px solid var(--teal);
-}
-
-.node-d {
-  right: 30px;
-  bottom: 38px;
-  border-bottom: 5px solid var(--blue);
-}
-
-.mini-guide {
-  padding: 22px;
-}
-
-.mini-guide p {
-  margin-top: 14px;
-  color: var(--muted);
-  line-height: 1.48;
-}
-
-.mini-guide strong {
-  color: var(--ink);
-}
-
 @media (max-width: 920px) {
   body {
     padding: 14px;
   }
 
   .app-shell {
-    grid-template-columns: 1fr;
     min-height: auto;
-  }
-
-  .side-panel {
-    grid-template-columns: minmax(230px, 0.8fr) 1fr;
-    grid-template-rows: auto;
   }
 }
 
 @media (max-width: 640px) {
   .topbar,
   .feedback-strip,
-  .actions,
-  .side-panel {
+  .actions {
     display: block;
   }
 
@@ -452,9 +362,5 @@ h1 {
   .actions button {
     width: 100%;
     margin-top: 10px;
-  }
-
-  .connector-map {
-    min-height: 230px;
   }
 }
