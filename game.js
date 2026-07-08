@@ -1,73 +1,83 @@
 ﻿"use strict";
 
 const connectors = [
-  "d'abord",
-  "ensuite",
-  "enfin",
+  "d’abord",
+  "parce qu’",
   "cependant",
-  "en revanche",
-  "parce que",
   "donc",
-  "c'est pourquoi",
+  "même si",
+  "c’est pourquoi",
 ];
 
+let wordBankOrder = shuffleConnectors(connectors);
+
+function shuffleConnectors(items) {
+  const shuffled = [...items];
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [shuffled[index], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[index]];
+  }
+  return shuffled;
+}
 const exercise = [
   {
-    before: "Les réseaux sociaux permettent de communiquer rapidement.",
-    after: "ils peuvent aussi créer une dépendance.",
+    answer: "d’abord",
+    hintLabel: "ordre",
+    hint: "On introduit la première idée du texte.",
+    reason: "D’abord sert à organiser les idées et à présenter le premier argument.",
+  },
+  {
+    answer: "parce qu’",
+    hintLabel: "cause",
+    hint: "On explique pourquoi les réseaux sociaux sont utiles.",
+    reason: "Parce qu’ introduit la cause de l'utilité des réseaux sociaux.",
+  },
+  {
     answer: "cependant",
-    hint: "La deuxième idée nuance la première.",
-    reason: "Cependant marque une opposition entre l'avantage et le risque.",
+    hintLabel: "opposition",
+    hint: "On passe d'un avantage à un aspect négatif.",
+    reason: "Cependant marque une opposition entre les avantages et les risques.",
   },
   {
-    before: "Je vérifie toujours les sources",
-    after: "il y a beaucoup de fausses informations.",
-    answer: "parce que",
-    hint: "On explique la raison de vérifier.",
-    reason: "Parce que introduit la cause.",
-  },
-  {
-    before: "",
-    after: "les réseaux sociaux sont utiles pour garder le contact avec la famille.",
-    answer: "d'abord",
-    hint: "C'est la première idée d'une série.",
-    reason: "D'abord ouvre l'organisation des arguments.",
-  },
-  {
-    before: "Beaucoup de jeunes passent trop de temps sur leur téléphone.",
-    after: "ils dorment parfois mal.",
-    answer: "c'est pourquoi",
-    hint: "La deuxième phrase présente une conséquence.",
-    reason: "C'est pourquoi annonce la conséquence de l'usage excessif.",
-  },
-  {
-    before: "Instagram est très populaire.",
-    after: "LinkedIn est plus professionnel.",
-    answer: "en revanche",
-    hint: "On compare deux réseaux avec une différence nette.",
-    reason: "En revanche oppose deux caractéristiques.",
-  },
-  {
-    before: "",
-    after: "on peut utiliser les réseaux sociaux pour apprendre une langue.",
-    answer: "ensuite",
-    hint: "Cette idée vient après la première.",
-    reason: "Ensuite poursuit l'ordre des arguments.",
-  },
-  {
-    before: "Les fausses informations circulent vite.",
-    after: "il faut faire attention.",
     answer: "donc",
-    hint: "On donne une conséquence directe.",
-    reason: "Donc exprime une conséquence simple et directe.",
+    hintLabel: "conséquence",
+    hint: "La deuxième phrase présente le résultat du temps passé en ligne.",
+    reason: "Donc introduit une conséquence directe.",
   },
   {
-    before: "",
-    after: "les réseaux sociaux peuvent être positifs si on les utilise avec modération.",
-    answer: "enfin",
-    hint: "C'est la conclusion de la série.",
-    reason: "Enfin introduit la dernière idée ou la conclusion.",
+    answer: "même si",
+    hintLabel: "concession",
+    hint: "On reconnaît un avantage avant de donner une limite.",
+    reason: "Même si introduit une concession : les réseaux sociaux sont pratiques, mais il faut les utiliser avec modération.",
   },
+  {
+    answer: "c’est pourquoi",
+    hintLabel: "conséquence",
+    hint: "La dernière phrase donne la conséquence logique du problème des informations peu fiables.",
+    reason: "C’est pourquoi annonce la conséquence : il faut vérifier les sources.",
+  },
+];
+
+const textBlocks = [
+  [
+    { type: "text", value: "Les réseaux sociaux occupent une place importante dans notre vie quotidienne. " },
+    { type: "blank", index: 0, display: "break" },
+    { type: "text", value: ", ils permettent de communiquer rapidement avec des personnes qui habitent loin. Ils sont utiles " },
+    { type: "blank", index: 1 },
+    { type: "text", value: "ils permettent de rester en contact avec la famille et les amis." },
+  ],
+  [
+    { type: "blank", index: 2, display: "break" },
+    { type: "text", value: ", ils peuvent aussi provoquer du stress. Beaucoup de personnes passent trop de temps en ligne. " },
+    { type: "blank", index: 3, display: "break" },
+    { type: "text", value: ", elles dorment moins bien et ont parfois du mal à se concentrer." },
+  ],
+  [
+    { type: "blank", index: 4, display: "break" },
+    { type: "text", value: " les réseaux sociaux sont pratiques, il faut les utiliser avec modération. Certaines informations circulent très vite et ne sont pas toujours fiables. " },
+    { type: "blank", index: 5, display: "break" },
+    { type: "text", value: ", il faut vérifier les sources avant de partager une publication." },
+  ],
 ];
 
 const wordBank = document.querySelector("#wordBank");
@@ -98,7 +108,7 @@ function setFeedback(title, text) {
 
 function renderWordBank() {
   wordBank.innerHTML = "";
-  connectors.forEach((connector) => {
+  wordBankOrder.forEach((connector) => {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "chip";
@@ -123,34 +133,47 @@ function renderWordBank() {
   });
 }
 
+function createBlank(index, display = "inline") {
+  const item = exercise[index];
+  const wrapper = document.createElement("span");
+  wrapper.className = `blank-group is-${display}`;
+
+  const blank = document.createElement("button");
+  blank.type = "button";
+  blank.className = "blank";
+  blank.textContent = state.answers[index] || "__________";
+  blank.setAttribute("aria-label", `Espace ${index + 1}, ${item.hintLabel}`);
+
+  if (state.selectedConnector && state.answers[index] === "") blank.classList.add("is-active");
+  if (state.checked && state.answers[index]) {
+    blank.classList.add(normalize(state.answers[index]) === item.answer ? "is-correct" : "is-wrong");
+  }
+
+  blank.addEventListener("click", () => fillBlank(index));
+
+  const hint = document.createElement("span");
+  hint.className = "inline-hint";
+  hint.textContent = `(${item.hintLabel})`;
+
+  wrapper.append(blank, hint);
+  return wrapper;
+}
+
 function renderSentences() {
   sentenceList.innerHTML = "";
-  exercise.forEach((item, index) => {
-    const li = document.createElement("li");
-    li.className = "sentence-card";
+  textBlocks.forEach((parts) => {
+    const paragraph = document.createElement("p");
+    paragraph.className = "exercise-paragraph";
 
-    const before = document.createElement("span");
-    before.textContent = item.before ? `${item.before} ` : "";
+    parts.forEach((part) => {
+      if (part.type === "text") {
+        paragraph.append(document.createTextNode(part.value));
+      } else {
+        paragraph.append(createBlank(part.index, part.display));
+      }
+    });
 
-    const blank = document.createElement("button");
-    blank.type = "button";
-    blank.className = "blank";
-    blank.textContent = state.answers[index] || "__________";
-    blank.setAttribute("aria-label", `Espace ${index + 1}`);
-
-    if (state.selectedConnector && state.answers[index] === "") blank.classList.add("is-active");
-    if (state.checked && state.answers[index]) {
-      blank.classList.add(normalize(state.answers[index]) === item.answer ? "is-correct" : "is-wrong");
-    }
-
-    blank.addEventListener("click", () => fillBlank(index));
-
-    const after = document.createElement("span");
-    const needsComma = item.before === "";
-    after.textContent = `${needsComma ? ", " : " "}${item.after}`;
-
-    li.append(before, blank, after);
-    sentenceList.appendChild(li);
+    sentenceList.appendChild(paragraph);
   });
 }
 
@@ -181,7 +204,7 @@ function fillBlank(index) {
 function updateProgress() {
   const filled = state.answers.filter(Boolean).length;
   const correct = state.answers.filter((answer, index) => normalize(answer) === exercise[index].answer).length;
-  scoreValue.textContent = `${state.checked ? correct : 0}/8`;
+  scoreValue.textContent = `${state.checked ? correct : 0}/${exercise.length}`;
   progressBar.style.width = `${(filled / exercise.length) * 100}%`;
 }
 
@@ -196,7 +219,7 @@ function checkAnswers() {
   const correct = state.answers.filter((answer, index) => normalize(answer) === exercise[index].answer).length;
 
   if (correct === exercise.length) {
-    setFeedback("Excellent", "Toutes les réponses sont correctes. La série d'idées est claire et bien organisée.");
+    setFeedback("Excellent", "Toutes les réponses sont correctes. Le texte est cohérent et bien organisé.");
   } else {
     const firstWrong = exercise.findIndex((item, index) => normalize(state.answers[index]) !== item.answer);
     setFeedback(`${correct} bonne(s) réponse(s) sur ${exercise.length}`, exercise[firstWrong].reason);
@@ -208,7 +231,7 @@ function showHint() {
   const nextEmpty = exercise.findIndex((_, index) => !state.answers[index]);
   const target = nextEmpty === -1 ? state.hintIndex % exercise.length : nextEmpty;
   state.hintIndex = target + 1;
-  setFeedback(`Indice ${target + 1}`, exercise[target].hint);
+  setFeedback(`Indice ${target + 1} : ${exercise[target].hintLabel}`, exercise[target].hint);
 }
 
 function resetExercise() {
@@ -216,6 +239,7 @@ function resetExercise() {
   state.answers = Array(exercise.length).fill("");
   state.checked = false;
   state.hintIndex = 0;
+  wordBankOrder = shuffleConnectors(connectors);
   setFeedback("Choisissez un connecteur.", "Sélectionnez un mot dans la banque, puis cliquez sur un espace vide.");
   render();
 }
@@ -231,3 +255,7 @@ resetButton.addEventListener("click", resetExercise);
 hintButton.addEventListener("click", showHint);
 
 render();
+
+
+
+

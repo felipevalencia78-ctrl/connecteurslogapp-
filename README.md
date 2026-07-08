@@ -2,21 +2,24 @@
 
 Application éducative en HTML, CSS et JavaScript pur pour pratiquer les connecteurs logiques en français.
 
-## Ouvrir
-
-Ouvrez `index.html` dans un navigateur moderne. Aucune installation ni serveur n'est nécessaire.
-
 ## Activité
 
-L'élève choisit les connecteurs dans la banque de mots et complète huit phrases sur les réseaux sociaux. L'application permet de déplacer les réponses, de vérifier le résultat, de voir des indices et de recommencer l'exercice.
+L'élève complète un texte sur les réseaux sociaux avec six connecteurs logiques. Chaque espace contient un indice entre parenthèses : ordre, cause, opposition, conséquence ou concession.
 
-## Réponses
+## Connecteurs
 
-1. cependant
-2. parce que
-3. d'abord
-4. c'est pourquoi
-5. en revanche
-6. ensuite
-7. donc
-8. enfin
+- d’abord
+- parce qu’
+- cependant
+- donc
+- même si
+- c’est pourquoi
+
+## Correction
+
+Les réseaux sociaux occupent une place importante dans notre vie quotidienne. D’abord, ils permettent de communiquer rapidement avec des personnes qui habitent loin. Ils sont utiles parce qu’ils permettent de rester en contact avec la famille et les amis.
+
+Cependant, ils peuvent aussi provoquer du stress. Beaucoup de personnes passent trop de temps en ligne. Donc, elles dorment moins bien et ont parfois du mal à se concentrer.
+
+Même si les réseaux sociaux sont pratiques, il faut les utiliser avec modération. Certaines informations circulent très vite et ne sont pas toujours fiables. C’est pourquoi, il faut vérifier les sources avant de partager une publication.
+

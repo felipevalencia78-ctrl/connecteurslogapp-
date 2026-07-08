@@ -186,31 +186,53 @@ h1 {
   padding: 20px 28px;
 }
 
-.sentences {
+.text-exercise {
   display: grid;
-  gap: 12px;
+  gap: 18px;
   margin: 0;
-  padding-left: 26px;
 }
 
-.sentence-card {
-  padding: 15px 16px;
+.exercise-paragraph {
+  margin: 0;
+  padding: 18px;
   border: 1px solid var(--line);
   border-left: 5px solid var(--blue);
   border-radius: 8px;
   background: #ffffff;
-  line-height: 1.65;
+  line-height: 2.1;
+  font-size: 1.03rem;
 }
 
-.sentence-card::marker {
-  color: var(--blue);
-  font-weight: 900;
+.blank-group {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-width: 168px;
+  margin: 0 10px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.blank-group.is-break {
+  display: flex;
+  width: fit-content;
+  margin: 10px 0 6px;
+}
+
+.inline-hint {
+  display: block;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1;
 }
 
 .blank {
   min-width: 156px;
   min-height: 38px;
-  margin: 0 4px;
+  margin: 0;
   padding: 0 12px;
   border: 2px dashed #8aa19b;
   background: #f1f8f5;
@@ -347,12 +369,29 @@ h1 {
     margin-top: 16px;
   }
 
+  .exercise-paragraph {
+    padding: 16px 14px;
+    line-height: 2.18;
+  }
+
+  .blank-group {
+    min-width: 128px;
+    margin: 4px 6px;
+  }
+
+  .blank-group.is-break {
+    margin: 10px 0 8px;
+  }
+
   .blank {
     display: inline-grid;
     place-items: center;
-    min-width: min(176px, 100%);
-    margin-top: 6px;
-    margin-bottom: 6px;
+    min-width: 116px;
+    min-height: 36px;
+  }
+
+  .inline-hint {
+    font-size: 0.68rem;
   }
 
   .feedback-strip .progress-track {
