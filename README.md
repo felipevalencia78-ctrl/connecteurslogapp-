@@ -1,16 +1,16 @@
 ﻿# Les Connecteurs Logiques
 
-Aplicacion educativa en HTML, CSS y JavaScript puro para practicar conectores logicos en frances.
+Application éducative en HTML, CSS et JavaScript pur pour pratiquer les connecteurs logiques en français.
 
-## Abrir
+## Ouvrir
 
-Abre `index.html` en un navegador moderno. No necesita instalacion ni servidor.
+Ouvrez `index.html` dans un navigateur moderne. Aucune installation ni serveur n'est nécessaire.
 
-## Actividad
+## Activité
 
-El estudiante elige conectores del banco de palabras y completa ocho frases sobre redes sociales. La app permite recolocar respuestas, comprobar resultados, ver pistas y reiniciar el ejercicio.
+L'élève choisit les connecteurs dans la banque de mots et complète huit phrases sur les réseaux sociaux. L'application permet de déplacer les réponses, de vérifier le résultat, de voir des indices et de recommencer l'exercice.
 
-## Respuestas
+## Réponses
 
 1. cependant
 2. parce que

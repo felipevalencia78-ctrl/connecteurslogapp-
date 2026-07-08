@@ -13,60 +13,60 @@ const connectors = [
 
 const exercise = [
   {
-    before: "Les reseaux sociaux permettent de communiquer rapidement.",
-    after: "ils peuvent aussi creer une dependance.",
+    before: "Les réseaux sociaux permettent de communiquer rapidement.",
+    after: "ils peuvent aussi créer une dépendance.",
     answer: "cependant",
-    hint: "La deuxieme idee nuance la premiere.",
+    hint: "La deuxième idée nuance la première.",
     reason: "Cependant marque une opposition entre l'avantage et le risque.",
   },
   {
-    before: "Je verifie toujours les sources",
+    before: "Je vérifie toujours les sources",
     after: "il y a beaucoup de fausses informations.",
     answer: "parce que",
-    hint: "On explique la raison de verifier.",
+    hint: "On explique la raison de vérifier.",
     reason: "Parce que introduit la cause.",
   },
   {
     before: "",
-    after: "les reseaux sociaux sont utiles pour garder le contact avec la famille.",
+    after: "les réseaux sociaux sont utiles pour garder le contact avec la famille.",
     answer: "d'abord",
-    hint: "C'est la premiere idee d'une serie.",
+    hint: "C'est la première idée d'une série.",
     reason: "D'abord ouvre l'organisation des arguments.",
   },
   {
-    before: "Beaucoup de jeunes passent trop de temps sur leur telephone.",
+    before: "Beaucoup de jeunes passent trop de temps sur leur téléphone.",
     after: "ils dorment parfois mal.",
     answer: "c'est pourquoi",
-    hint: "La deuxieme phrase presente une consequence.",
-    reason: "C'est pourquoi annonce la consequence de l'usage excessif.",
+    hint: "La deuxième phrase présente une conséquence.",
+    reason: "C'est pourquoi annonce la conséquence de l'usage excessif.",
   },
   {
-    before: "Instagram est tres populaire.",
+    before: "Instagram est très populaire.",
     after: "LinkedIn est plus professionnel.",
     answer: "en revanche",
-    hint: "On compare deux reseaux avec une difference nette.",
-    reason: "En revanche oppose deux caracteristiques.",
+    hint: "On compare deux réseaux avec une différence nette.",
+    reason: "En revanche oppose deux caractéristiques.",
   },
   {
     before: "",
-    after: "on peut utiliser les reseaux sociaux pour apprendre une langue.",
+    after: "on peut utiliser les réseaux sociaux pour apprendre une langue.",
     answer: "ensuite",
-    hint: "Cette idee vient apres la premiere.",
+    hint: "Cette idée vient après la première.",
     reason: "Ensuite poursuit l'ordre des arguments.",
   },
   {
     before: "Les fausses informations circulent vite.",
     after: "il faut faire attention.",
     answer: "donc",
-    hint: "On donne une consequence directe.",
-    reason: "Donc exprime une consequence simple et directe.",
+    hint: "On donne une conséquence directe.",
+    reason: "Donc exprime une conséquence simple et directe.",
   },
   {
     before: "",
-    after: "les reseaux sociaux peuvent etre positifs si on les utilise avec moderation.",
+    after: "les réseaux sociaux peuvent être positifs si on les utilise avec modération.",
     answer: "enfin",
-    hint: "C'est la conclusion de la serie.",
-    reason: "Enfin introduit la derniere idee ou la conclusion.",
+    hint: "C'est la conclusion de la série.",
+    reason: "Enfin introduit la dernière idée ou la conclusion.",
   },
 ];
 
@@ -115,7 +115,7 @@ function renderWordBank() {
       }
       state.selectedConnector = connector;
       state.checked = false;
-      setFeedback("Conector seleccionado", `Ahora toca el espacio donde va "${connector}".`);
+      setFeedback("Connecteur sélectionné", `Cliquez maintenant sur l'espace où va « ${connector} ».`);
       render();
     });
 
@@ -136,7 +136,7 @@ function renderSentences() {
     blank.type = "button";
     blank.className = "blank";
     blank.textContent = state.answers[index] || "__________";
-    blank.setAttribute("aria-label", `Espacio ${index + 1}`);
+    blank.setAttribute("aria-label", `Espace ${index + 1}`);
 
     if (state.selectedConnector && state.answers[index] === "") blank.classList.add("is-active");
     if (state.checked && state.answers[index]) {
@@ -160,11 +160,11 @@ function fillBlank(index) {
       state.selectedConnector = state.answers[index];
       state.answers[index] = "";
       state.checked = false;
-      setFeedback("Puedes moverlo", "Toca otro espacio para recolocar ese conector.");
+      setFeedback("Vous pouvez le déplacer", "Cliquez sur un autre espace pour replacer ce connecteur.");
       render();
       return;
     }
-    setFeedback("Primero elige una palabra", "Selecciona un conector del banco antes de completar el espacio.");
+    setFeedback("Choisissez d'abord un mot", "Sélectionnez un connecteur dans la banque avant de compléter l'espace.");
     return;
   }
 
@@ -174,7 +174,7 @@ function fillBlank(index) {
   state.answers[index] = state.selectedConnector;
   state.selectedConnector = null;
   state.checked = false;
-  setFeedback("Respuesta colocada", "Puedes seguir completando o comprobar cuando termines.");
+  setFeedback("Réponse placée", "Vous pouvez continuer ou vérifier quand tout est complété.");
   render();
 }
 
@@ -188,7 +188,7 @@ function updateProgress() {
 function checkAnswers() {
   const filled = state.answers.filter(Boolean).length;
   if (filled < exercise.length) {
-    setFeedback("Faltan espacios", `Has completado ${filled} de ${exercise.length}. Termina todos antes de comprobar.`);
+    setFeedback("Il manque des espaces", `Vous avez complété ${filled} espace(s) sur ${exercise.length}. Terminez tout avant de vérifier.`);
     return;
   }
 
@@ -196,10 +196,10 @@ function checkAnswers() {
   const correct = state.answers.filter((answer, index) => normalize(answer) === exercise[index].answer).length;
 
   if (correct === exercise.length) {
-    setFeedback("Excelente", "Todas las respuestas son correctas. La serie de ideas queda clara y bien organizada.");
+    setFeedback("Excellent", "Toutes les réponses sont correctes. La série d'idées est claire et bien organisée.");
   } else {
     const firstWrong = exercise.findIndex((item, index) => normalize(state.answers[index]) !== item.answer);
-    setFeedback(`${correct} de ${exercise.length} correctas`, exercise[firstWrong].reason);
+    setFeedback(`${correct} bonne(s) réponse(s) sur ${exercise.length}`, exercise[firstWrong].reason);
   }
   render();
 }
@@ -208,7 +208,7 @@ function showHint() {
   const nextEmpty = exercise.findIndex((_, index) => !state.answers[index]);
   const target = nextEmpty === -1 ? state.hintIndex % exercise.length : nextEmpty;
   state.hintIndex = target + 1;
-  setFeedback(`Pista ${target + 1}`, exercise[target].hint);
+  setFeedback(`Indice ${target + 1}`, exercise[target].hint);
 }
 
 function resetExercise() {
@@ -216,7 +216,7 @@ function resetExercise() {
   state.answers = Array(exercise.length).fill("");
   state.checked = false;
   state.hintIndex = 0;
-  setFeedback("Elige un conector.", "Selecciona una palabra del banco y luego toca un espacio en blanco.");
+  setFeedback("Choisissez un connecteur.", "Sélectionnez un mot dans la banque, puis cliquez sur un espace vide.");
   render();
 }
 
